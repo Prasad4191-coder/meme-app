@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
-import { FaUpload, FaMagic, FaEdit, FaTrash, FaTimes, FaComment, FaCalendarAlt } from "react-icons/fa";
+import { FaUpload, FaMagic, FaEdit, FaTrash, FaTimes } from "react-icons/fa";
 import { RootState } from "../store/store";
 import { uploadMeme, deleteMeme, editMemeCaption } from "../store/slices/memeSlice";
 
@@ -105,7 +105,7 @@ export default function UploadMeme() {
 
     return (
         <motion.div className="min-h-screen p-6 bg-gray-50 dark:bg-gray-900 text-white">
-           
+
             <div className="text-center mb-12">
                 <h1 className="text-4xl md:text-6xl font-bold tracking-normal bg-clip-text text-transparent text-center inline-block bg-gradient-to-r from-pink-500 to-purple-600 px-4 py-2">
                     Upload Memes   <span className="text-red-500">🎭</span>
