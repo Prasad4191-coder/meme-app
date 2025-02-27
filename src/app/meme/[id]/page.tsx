@@ -101,8 +101,6 @@ export default function MemeDetails() {
                         )}
                     </button>
                 </div>
-
-
                 <p className="text-lg text-gray-700 dark:text-gray-300 mt-4 italic">{meme.caption || "No caption"}</p>
 
                 <div className="flex gap-4 mt-4 text-gray-900 dark:text-white">
