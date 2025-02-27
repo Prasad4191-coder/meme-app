@@ -11,6 +11,7 @@ import Image from "next/image";
 import { MemeApiResponse } from "@/types";
 import { RootState } from "./store/store";
 
+
 export default function Home() {
   const dispatch = useDispatch();
   const memes = useSelector((state: RootState) => state.memes.allMemes);
