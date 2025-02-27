@@ -15,7 +15,6 @@ export default function Home() {
   const dispatch = useDispatch();
   const memes = useSelector((state: RootState) => state.memes.allMemes);
   const likedMemes = useSelector((state: RootState) => state.memes.likedMemes);
-  const darkMode = useSelector((state: RootState) => state.theme.darkMode);
   const [showHeart, setShowHeart] = useState<string | null>(null);
   const [hydrated, setHydrated] = useState(false);
 

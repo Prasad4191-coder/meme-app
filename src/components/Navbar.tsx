@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
     const [darkMode, setDarkMode] = useState(false);
@@ -74,9 +75,10 @@ export default function Navbar() {
 
                     {/* Profile Picture on the Right */}
                     <Link href="/profile" className="flex items-center">
-                        <img
+                        <Image
                             src={profilePicture}
                             alt="Profile"
+                            width={500} height={500}
                             className="w-10 h-10 rounded-full border border-gray-300"
                         />
                     </Link>
