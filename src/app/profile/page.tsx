@@ -15,12 +15,11 @@ export default function Profile() {
     const uploadedMemes = useSelector((state: RootState) => state.memes.uploadedMemes);
     const likedMemes = useSelector((state: RootState) => state.memes.likedMemes);
 
-    const [hydrated, setHydrated] = useState(false); // Prevent SSR Mismatch
+    const [hydrated, setHydrated] = useState(false);
     const [profile, setProfileState] = useState(profileFromStore);
     const [editProfile, setEditProfile] = useState(false);
     const [newProfile, setNewProfile] = useState(profileFromStore);
 
-    // Mark Component as Hydrated
     useEffect(() => {
         setHydrated(true);
         if (typeof window !== "undefined") {
@@ -32,16 +31,15 @@ export default function Profile() {
         }
     }, [dispatch]);
 
-    // Prevent SSR Mismatch - Don't Render Until Hydrated
     if (!hydrated) return null;
 
     // Save profile changes
     const saveProfile = () => {
-        dispatch(updateProfile(newProfile)); // Update Redux
-        localStorage.setItem("userProfile", JSON.stringify(newProfile)); // Save to Local Storage
+        dispatch(updateProfile(newProfile)); 
+        localStorage.setItem("userProfile", JSON.stringify(newProfile)); 
         toast.success("Profile updated successfully!", { position: "top-center" });
         setEditProfile(false);
-        setProfileState(newProfile); // Update local state
+        setProfileState(newProfile);
     };
 
     // Handle profile picture upload
@@ -69,7 +67,7 @@ export default function Profile() {
                         <textarea value={newProfile.bio} onChange={(e) => setNewProfile({ ...newProfile, bio: e.target.value })}
                             className="mt-2 p-2 border rounded-md text-gray-900 dark:text-white dark:bg-gray-700 w-full" />
                         <button onClick={saveProfile} className="mt-4 px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
-                            Save Profile ✅
+                            Save Profile
                         </button>
                     </>
                 ) : (

@@ -32,19 +32,17 @@ export default function ExploreMemes() {
     const [currentPage, setCurrentPage] = useState(1);
     const memesPerPage = 12;
 
-    // Ensure Hydration Completes Before Rendering (Fix SSR Issues)
     useEffect(() => {
         setHydrated(true);
     }, []);
 
-    // Fetch Memes After Hydration (Fixes Server-Client Mismatch)
     useEffect(() => {
         if (memes.length === 0 && hydrated) {
             axios.get<MemeApiResponse>("https://api.imgflip.com/get_memes")
                 .then((res) => {
                     const memesWithExtraData = res.data.data.memes.map((meme) => ({
                         ...meme,
-                        likes: Math.floor(Math.random() * 500) + 50, // Random values set on client
+                        likes: Math.floor(Math.random() * 500) + 50,
                         comments: Math.floor(Math.random() * 100) + 5,
                         date: new Date(Date.now() - Math.random() * 10000000000).toLocaleDateString(),
                     }));
@@ -54,7 +52,6 @@ export default function ExploreMemes() {
         }
     }, [dispatch, memes.length, hydrated]);
 
-    // Prevent SSR Mismatch - Don't Render Until Hydrated
     if (!hydrated) return null;
 
     // Search functionality with debounce
@@ -125,7 +122,7 @@ export default function ExploreMemes() {
                         <AnimatePresence mode="popLayout">
                             {showHeart === meme.id && (
                                 <motion.div
-                                    key={meme.id} // Ensures animation updates properly
+                                    key={meme.id} 
                                     initial={{ opacity: 0, scale: 0.5 }}
                                     animate={{ opacity: 1, scale: 1.5 }}
                                     exit={{ opacity: 0, scale: 0.5 }}
@@ -147,7 +144,7 @@ export default function ExploreMemes() {
                             <button onClick={() => {
                                 dispatch(toggleLike(meme.id));
                                 setShowHeart(meme.id);
-                                setTimeout(() => setShowHeart(null), 600); // Hide heart after 600ms
+                                setTimeout(() => setShowHeart(null), 600); 
                             }} className="flex items-center gap-1 text-lg">
                                 {likedMemes.some((likedMeme) => likedMeme.id === meme.id) ? <FaHeart className="text-red-500" /> : <FaRegHeart />}
                                 <span>{meme.likes}</span>

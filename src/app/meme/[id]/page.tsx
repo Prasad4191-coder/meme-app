@@ -14,7 +14,7 @@ import { setMemes, toggleLike } from "@/app/store/slices/memeSlice";
 import Image from "next/image";
 
 export default function MemeDetails() {
-    const { id } = useParams(); // Get meme ID from URL
+    const { id } = useParams();
     const dispatch = useDispatch();
     const memes = useSelector((state: RootState) => state.memes.allMemes);
     const likedMemes = useSelector((state: RootState) => state.memes.likedMemes);
@@ -34,7 +34,7 @@ export default function MemeDetails() {
                 .then((res) => {
                     const memesWithExtraData = res.data.data.memes.map((meme) => ({
                         ...meme,
-                        caption: meme.caption || "", // Ensure caption exists
+                        caption: meme.caption || "", 
                         likes: Math.floor(Math.random() * 500) + 50,
                         comments: Math.floor(Math.random() * 100) + 5,
                         date: new Date(Date.now() - Math.random() * 10000000000).toLocaleDateString(),
@@ -46,7 +46,7 @@ export default function MemeDetails() {
                 .catch(() => console.error("Failed to fetch meme."));
         }
 
-        // Ensure comments are loaded from Local Storage
+        
         if (typeof window !== "undefined") {
             const savedComments = JSON.parse(localStorage.getItem(`comments-${id}`) || "[]");
             setComments(savedComments);

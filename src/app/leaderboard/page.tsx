@@ -11,21 +11,20 @@ import Image from "next/image";
 export default function Leaderboard() {
     const likedMemes = useSelector((state: RootState) => state.memes.likedMemes);
     const [topMemes, setTopMemes] = useState<typeof likedMemes>([]);
-    const [hydrated, setHydrated] = useState(false); // Fix SSR issues
+    const [hydrated, setHydrated] = useState(false);
 
     useEffect(() => {
-        setHydrated(true); // Mark hydration complete
+        setHydrated(true); 
     }, []);
 
     useEffect(() => {
         if (hydrated) {
-            // Sort memes by likes only after hydration (Fixes SSR Mismatch)
+            
             const sortedMemes = [...likedMemes].sort((a, b) => b.likes - a.likes);
-            setTopMemes(sortedMemes.slice(0, 10)); // Get top 10 memes
+            setTopMemes(sortedMemes.slice(0, 10));
         }
     }, [likedMemes, hydrated]);
 
-    // Hide UI until hydration is complete
     if (!hydrated) return null;
 
     return (

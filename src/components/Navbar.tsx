@@ -23,7 +23,6 @@ export default function Navbar() {
 
         window.addEventListener("storage", syncDarkMode);
 
-        // Load profile picture from localStorage
         const savedProfile = JSON.parse(localStorage.getItem("userProfile") || "{}");
         if (savedProfile.profilePicture) {
             setProfilePicture(savedProfile.profilePicture);
@@ -40,7 +39,6 @@ export default function Navbar() {
         localStorage.setItem("theme", newTheme);
         setDarkMode(!darkMode);
 
-        // Emit storage event to sync across all components
         window.dispatchEvent(new Event("storage"));
     };
 

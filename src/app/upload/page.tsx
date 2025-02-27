@@ -6,7 +6,6 @@ import { FaUpload, FaMagic, FaEdit, FaTrash, FaTimes } from "react-icons/fa";
 import { RootState } from "../store/store";
 import { uploadMeme, deleteMeme, editMemeCaption } from "../store/slices/memeSlice";
 
-// Predefined AI-like captions (since API is ignored)
 const AI_CAPTIONS = [
     "When you realize it's Monday again... 😩",
     "That moment when WiFi stops working 😱",
@@ -29,12 +28,10 @@ export default function UploadMeme() {
     const [hydrated, setHydrated] = useState(false);
     const [generatedId, setGeneratedId] = useState("");
 
-    // Prevents SSR Mismatch by marking hydration complete
     useEffect(() => {
         setHydrated(true);
     }, []);
 
-    // Generate Unique ID after hydration to prevent SSR mismatch
     useEffect(() => {
         if (hydrated) {
             setGeneratedId(`${Date.now()}-${Math.random()}`);
@@ -68,7 +65,7 @@ export default function UploadMeme() {
         if (!selectedFile) return alert("Please upload an image!");
 
         const newMeme = {
-            id: generatedId, // Ensures consistent ID
+            id: generatedId, 
             name: "Custom Meme",
             url: selectedFile,
             caption: memeCaption,
@@ -100,7 +97,6 @@ export default function UploadMeme() {
         setEditMode(null);
     };
 
-    // Hide component until hydrated (Fix SSR issues)
     if (!hydrated) return null;
 
     return (
@@ -143,7 +139,7 @@ export default function UploadMeme() {
                             onClick={handleSubmit}
                             className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
                         >
-                            Upload Meme ✅
+                            Upload Meme 
                         </button>
                         <button
                             onClick={handleCancel}
