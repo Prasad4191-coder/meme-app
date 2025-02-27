@@ -3,16 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Providers from "@/Providers/Providers";
+const geistSans = Geist({ subsets: ['latin'], weight: ['100', '900'] });
+const geistMono = Geist({ subsets: ['latin'], weight: ['100', '900'] });
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,9 +15,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white">
+      <body className="${geistSans.className} bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white">
         <Navbar />
-        <Providers> 
+        <Providers>
           {children}
         </Providers>
       </body>
