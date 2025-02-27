@@ -10,7 +10,7 @@ const initialState: { userProfile: UserProfile } = {
     userProfile: {
         name: "User",
         bio: "This is my meme collection!",
-        profilePicture: "/default-avatar.png",
+        profilePicture: "src/images/profile/default-avatar.png",
     }
 };
 
