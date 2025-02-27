@@ -16,13 +16,14 @@ interface MemeState {
     uploadedMemes: Meme[];
 }
 
-const loadFromLocalStorage = (key: string, defaultValue: any) => {
+const loadFromLocalStorage = <T>(key: string, defaultValue: T): T => {
     if (typeof window !== "undefined") {
         const storedData = localStorage.getItem(key);
-        return storedData ? JSON.parse(storedData) : defaultValue;
+        return storedData ? JSON.parse(storedData) as T : defaultValue;
     }
     return defaultValue;
 };
+
 
 const initialState: MemeState = {
     allMemes: loadFromLocalStorage("allMemes", []).map((m: Meme) => ({
