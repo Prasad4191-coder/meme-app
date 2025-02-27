@@ -83,11 +83,13 @@ export default function Home() {
             >
               <Link href={`/meme/${meme.id}`} className="block">
                 <motion.div whileHover={{ scale: 1.05 }}>
-                  <img
+                  <Image
                     src={meme.url}
                     alt={meme.name}
                     loading="lazy"
+                    width={500} height={500}
                     className="w-full h-52 object-cover rounded-lg"
+
                   />
                   <h3 className="text-sm font-semibold text-gray-900 dark:text-white mt-3 text-center">{meme.name}</h3>
                 </motion.div>

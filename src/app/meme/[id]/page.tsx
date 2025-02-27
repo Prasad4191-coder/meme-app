@@ -11,6 +11,7 @@ import axios from "axios";
 import { Meme, MemeApiResponse } from "@/types";
 import { RootState } from "@/app/store/store";
 import { setMemes, toggleLike } from "@/app/store/slices/memeSlice";
+import Image from "next/image";
 
 export default function MemeDetails() {
     const { id } = useParams(); // Get meme ID from URL
@@ -91,7 +92,7 @@ export default function MemeDetails() {
 
             <div className="flex flex-col items-center mt-6">
                 <div className="relative w-full max-w-lg rounded-lg overflow-hidden">
-                    <img src={meme.url} alt={meme.name} className="w-full h-auto object-cover rounded-lg shadow-lg" />
+                    <Image src={meme.url} alt={meme.name} width={500} height={500} className="w-full h-auto object-cover rounded-lg shadow-lg" />
                     <button onClick={handleToggleLike} className="absolute bottom-2 right-2 bg-white/80 dark:bg-gray-800/80 p-2 rounded-full shadow-md">
                         {likedMemes.some((likedMeme) => likedMeme.id === meme.id) ? (
                             <FaHeart className="text-red-500 text-2xl" />
@@ -101,10 +102,9 @@ export default function MemeDetails() {
                     </button>
                 </div>
 
-                {/* Meme Caption */}
-                <p className="text-lg text-gray-700 dark:text-gray-300 mt-4 italic">"{meme.caption || "No caption"}"</p>
 
-                {/* Likes, Comments & Share */}
+                <p className="text-lg text-gray-700 dark:text-gray-300 mt-4 italic">{meme.caption || "No caption"}</p>
+
                 <div className="flex gap-4 mt-4 text-gray-900 dark:text-white">
                     <span className="flex items-center gap-1"><FaHeart className="text-red-500" /> {meme.likes} Likes</span>
                     <span className="flex items-center gap-1"><FaComment className="text-blue-500" /> {comments.length} Comments</span>

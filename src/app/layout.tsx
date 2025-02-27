@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google"; 
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Providers from "@/Providers/Providers";
-const geistSans = Geist({ subsets: ['latin'], weight: ['100', '900'] });
-const geistMono = Geist({ subsets: ['latin'], weight: ['100', '900'] });
 
+const geistSans = Geist({ subsets: ["latin"], weight: ["100", "900"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,11 +14,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="${geistSans.className} bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white">
+      <body className={`${geistSans.className} bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white`}>
         <Navbar />
-        <Providers>
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

@@ -1,14 +1,13 @@
-"use client"; // Ensures this is a Client Component
-
+"use client";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { motion } from "framer-motion";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaHeart, FaCalendarAlt } from "react-icons/fa";
 import { RootState } from "../store/store";
 import { setProfile, updateProfile } from "../store/slices/profileSlice";
+import Image from "next/image";
 
 export default function Profile() {
     const dispatch = useDispatch();
@@ -61,7 +60,7 @@ export default function Profile() {
         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="min-h-screen p-6">
             {/* User Profile Section */}
             <div className="flex flex-col items-center bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-                <img src={profile.profilePicture} alt="Profile" className="w-24 h-24 rounded-full border border-gray-300" />
+                <Image src={profile.profilePicture} alt="Profile" width={500} height={500} className="w-24 h-24 rounded-full border border-gray-300" />
                 {editProfile ? (
                     <>
                         <input type="file" accept="image/*" onChange={handleProfilePictureUpload} className="mt-2 text-sm text-gray-500" />
@@ -92,7 +91,7 @@ export default function Profile() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
                     {uploadedMemes.map((meme) => (
                         <motion.div key={meme.id} className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-lg">
-                            <img src={meme.url} alt="Meme" className="w-full h-52 object-cover rounded-lg" />
+                            <Image src={meme.url} alt="Meme" width={500} height={500} className="w-full h-52 object-cover rounded-lg" />
                             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mt-3 text-center">{meme.caption}</h3>
                         </motion.div>
                     ))}
@@ -107,7 +106,7 @@ export default function Profile() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
                     {likedMemes.map((meme) => (
                         <motion.div key={meme.id} className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-lg">
-                            <img src={meme.url} alt="Liked Meme" className="w-full h-52 object-cover rounded-lg" />
+                            <Image src={meme.url} alt="Liked Meme" width={500} height={500} className="w-full h-52 object-cover rounded-lg" />
                             <div className="flex justify-between items-center mt-2 px-2 text-gray-900 dark:text-white">
                                 <p className="flex items-center gap-1"><FaHeart className="text-red-500" /> {meme.likes}</p>
                                 <p className="flex items-center gap-1"><FaCalendarAlt className="text-gray-500" /> {meme.date}</p>
